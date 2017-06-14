@@ -55,5 +55,5 @@ RUN chmod 755 /usr/bin/llstartup
 EXPOSE 80
 
 # define entrypoint so ll will start from docker run
-#ENTRYPOINT ["/usr/bin/llstartup"]
 ENTRYPOINT ["/bin/bash"]
+CMD ["/usr/bin/llstartup"]
