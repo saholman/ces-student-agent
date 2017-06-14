@@ -1,0 +1,12 @@
+$schemaver: "1.2" # required
+type: "web service"
+assignment_group: "gro:AD-Software Architecture"
+stages: # required section denoting the stages where this app is deployed
+  dev: # name of the stage this system is deployed to (should be one of the stages in the Software CI type in the CMDB converted to lowercase)
+    hosting_location: "Other" # required string which is the name of the Hosting Location CI to use in the CMDB
+tags: # optional, but will potentially be used to set AWS tags which will affect if your app is turned off automatically or not seehttps://byuoit.atlassian.net/wiki/display/OAPP/OIT-Wide+AWS+Access+Key+Management+Best+Practices#OIT-WideAWSAccessKeyManagementBestPractices-AutomaticallyturnoffordeleteAWSresourcesthataretaggedasdevelopment/stagingornottaggedatall
+  # https://byuoit.atlassian.net/wiki/display/OAPP/Tagging
+  data-sensitivity: "confidential" # one of 'public', 'internal', 'confidential' (default), 'highly confidential'.  More info at https://infohub.byu.edu/resources/classification
+  env: "dev" # Defined here https://byuoit.atlassian.net/wiki/display/OAPP/Tagging+change+request
+  team: "AD-Software Architecture" # Get your group by going to https://it.byu.edu -> Your name in the top right -> Profile -> Primary Group
+  app: "CES Student Agent"
