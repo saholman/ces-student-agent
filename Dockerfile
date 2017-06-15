@@ -5,7 +5,7 @@ USER root
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
 RUN echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list
 RUN apt-get update -y
-RUN apt-get install apache2 php5 php-pear php5-dev php5-mcrypt php5-json php5-mongo php5-curl mongodb-org expect git -y
+RUN apt-get install apache2 php5 php-pear php5-dev php5-mcrypt php5-json php5-mongo php5-curl mongodb-org git -y
 RUN php5enmod mcrypt json mongo curl
 RUN pecl install mongo
 RUN php5 -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -37,11 +37,14 @@ RUN exec /usr/bin/mongod & sleep 30 && \
 
 # modify Apache2 configuration
 #RUN sed -i "8s/.*/\$_SERVER[SERVER_PORT]=443;\n\$_SERVER[HTTPS]='on';/" /learninglocker/public/index.php
-RUN echo 'Alias /learninglocker "/var/www/learninglocker/public/"' >> /etc/apache2/apache2.conf && \
-    echo '<Directory "/var/www/learninglocker/public">' >> /etc/apache2/apache2.conf && \
-    echo '  AllowOverride All' >> /etc/apache2/apache2.conf && \
-    echo '</Directory>' >> /etc/apache2/apache2.conf
-RUN sed -i "s/^DocumentRoot.*/DocumentRoot \'\/var\/www\/learninglocker\/public\/\'/g" /etc/apache2/apache2.conf
+RUN sed -i "s/^.*DocumentRoot.*/DocumentRoot \'\/var\/www\/learninglocker\/public\/\'/g" /etc/apache2/sites-enabled/000-default.conf && \
+    echo '<Directory "/var/www/learninglocker/public">' >> /etc/apache2/sites-enabled/000-default.conf && \
+    echo '  Options Indexes FollowSymLinks MultiViews' >> /etc/apache2/sites-enabled/000-default.conf && \
+    echo '  AllowOverride All' >> /etc/apache2/sites-enabled/000-default.conf && \
+    echo '  Order allow,deny' >> /etc/apache2/sites-enabled/000-default.conf && \
+    echo '  Allow from all' >> /etc/apache2/sites-enabled/000-default.conf && \
+    echo '</Directory>' >> /etc/apache2/sites-enabled/000-default.conf
+
 RUN chown -R www-data:www-data /learninglocker; ln -s /learninglocker/ /var/www/
 RUN chown -R www-data:www-data /var/www/learninglocker
 

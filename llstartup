@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x
 exec /usr/bin/mongod &
-sleep 10
+sleep 15
 mongo learninglocker --eval 'printjson(db.createUser({user:"ll_user",pwd:"ll_password",roles:["dbOwner"]}))'
 exec /usr/sbin/apachectl -D FOREGROUND
