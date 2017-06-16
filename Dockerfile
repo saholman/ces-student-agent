@@ -7,6 +7,7 @@ RUN echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-or
 RUN apt-get update -y
 RUN apt-get install apache2 php5 php-pear php5-dev php5-mcrypt php5-json php5-mongo php5-curl mongodb-org git -y
 RUN php5enmod mcrypt json mongo curl
+RUN a2enmod rewrite
 RUN pecl install mongo
 RUN php5 -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php5 -r "if (hash_file('SHA384', 'composer-setup.php') === '669656bab3166a7aff8a7506b8cb2d1c292f042046c5a994c43155c0be6190fa0355160742ab2e1c88d40d5be660b410') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
