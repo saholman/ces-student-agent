@@ -1,5 +1,5 @@
 ---
-$schemaver: 2.0
+$schemaver: '2.0'
 software:
   - type: web service
     assignment_group: gro:AD-Software Architecture
