@@ -28,6 +28,8 @@ environments:
       auto_scaling:
         min_tasks: 1
         max_tasks: 1
+      cluster:
+        key_name: mhailstone
       dependencies:
       - lrs-storage
     lrs-storage:
