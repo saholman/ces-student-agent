@@ -32,7 +32,7 @@ VOLUME /data/db
 RUN exec /usr/bin/mongod & sleep 30 && \
     mongo admin --eval 'printjson(db.system.version.remove({}))' && \
     mongo admin --eval 'printjson(db.system.version.insert({ "_id" : "authSchema", "currentVersion" : 3 }))' && \
-    mongo learninglocker --eval 'printjson(db.createUser({user:"ll_user",pwd:"ll_password",roles:["dbOwner"]}))' && \
+    mongo learninglocker --eval 'printjson(db.createUser({user:"user",pwd:"password",roles:["dbOwner"]}))' && \
     cd /learninglocker && \
     php artisan migrate
 
