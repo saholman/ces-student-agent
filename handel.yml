@@ -6,8 +6,15 @@ environments:
   dev:
     lrs:
       type: ecs
+      load_balancer:
+        type: http
       containers:
       - name: lrs
+        port_mappings:
+        - 80
+        routing:
+          base_path: /
+          health_check_path: /
       auto_scaling:
         min_tasks: 1
         max_tasks: 1
