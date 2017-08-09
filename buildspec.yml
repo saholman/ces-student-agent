@@ -1,0 +1,15 @@
+version: 0.1
+phases:
+  pre_build:
+    commands:
+      - curl -sL https://deb.nodesource.com/setup_6.x | bash -
+      - apt-get install -y nodejs jq
+      - $(aws ecr get-login --region us-west-2)
+  build:
+    commands:
+      - chmod a+x ./lrs/codebuild-docker-build.sh
+      - bash ./lrs/codebuild-docker-build.sh
+      - npm --prefix ./events install ./events
+artifacts:
+  files:
+    - ./**/*
