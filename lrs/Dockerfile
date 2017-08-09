@@ -22,8 +22,8 @@ RUN git clone https://github.com/LearningLocker/learninglocker.git learninglocke
 RUN cd /learninglocker && composer install --no-interaction --no-dev
 
 # modify database credentials
-RUN sed -i "s/^.*username.*/\t\'username\' => \'ll_user\',/g" /learninglocker/app/config/database.php && \
-    sed -i "s/^.*password.*/\t\'password\' => \'ll_password\',/g" /learninglocker/app/config/database.php && \
+RUN sed -i "s/^.*username.*/\t\'username\' => \'user\',/g" /learninglocker/app/config/database.php && \
+    sed -i "s/^.*password.*/\t\'password\' => \'password\',/g" /learninglocker/app/config/database.php && \
     sed -i "s/^.*database.*/\t\'database\' => \'learninglocker\',/g" /learninglocker/app/config/database.php
 
 VOLUME /data/db

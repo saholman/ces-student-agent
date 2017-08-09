@@ -1,0 +1,27 @@
+{
+    "name": "event-processing",
+    "version": "0.0.1",
+    "description": "Consume/Raise events from/to the CES Common Event Bus",
+    "main": "index.js",
+    "scripts": {
+        "test": "mocha test/test.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/byu-oit/ces-student-agent.git"
+    },
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/byu-oit/ces-student-agent/issues"
+    },
+    "homepage": "https://github.com/byu-oit/ces-student-agent#readme",
+    "dependencies": {
+        "aws-sdk": "^2.94.0",
+        "bluebird": "^3.5.0",
+        "byu-request": "0.0.1"
+    },
+    "devDependencies": {
+        "chai": "^4.1.0",
+        "mocha": "^3.4.2"
+    }
+}

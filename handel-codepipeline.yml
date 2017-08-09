@@ -1,0 +1,21 @@
+version: 1
+
+name: ces-student-agent
+
+pipelines:
+  dev:
+    phases:
+    - type: github
+      name: Source
+      owner: byu-oit
+      repo: ces-student-agent
+      branch: master
+    - type: codebuild
+      name: Build
+      build_image: aws/codebuild/docker:1.12.1
+      environment_variables:
+        ENV_TO_DEPLOY: dev
+    - type: handel
+      name: DevDeploy
+      environments_to_deploy:
+      - dev

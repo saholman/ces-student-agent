@@ -1,0 +1,24 @@
+version: 1
+
+name: ces-student-agent
+
+environments:
+  dev:
+    lrs:
+      type: ecs
+      containers:
+      - name: lrs
+      auto_scaling:
+        min_tasks: 1
+        max_tasks: 1
+      dependencies:
+      - storage
+    lrs-storage:
+      type: efs
+    webhook:
+      type: apigateway
+      path_to_code: events
+      lambda_runtime: nodejs6.10
+      handler_function: index.handler
+      provisioned_memory: 256
+      function_timeout: 300
