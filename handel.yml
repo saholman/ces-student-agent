@@ -19,7 +19,7 @@ environments:
         links:
         - kong-database
         port_mappings:
-        - 80
+        - 8000
         routing:
           base_path: /
           health_check_path: /
