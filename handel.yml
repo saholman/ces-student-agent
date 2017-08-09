@@ -10,11 +10,21 @@ environments:
         type: http
       containers:
       - name: lrs
+      - name: kong
+        image_name: kong
+        environment_variables:
+          KONG_DATABASE: cassandra
+          KONG_CASSANDRA_CONTACT_POINTS: kong-database
+          KONG_PG_HOST: kong-database
+        links:
+        - kong-database
         port_mappings:
         - 80
         routing:
           base_path: /
           health_check_path: /
+      - name: kong-database
+        image_name: cassandra:3
       auto_scaling:
         min_tasks: 1
         max_tasks: 1
