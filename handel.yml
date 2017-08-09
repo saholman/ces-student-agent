@@ -12,7 +12,7 @@ environments:
         min_tasks: 1
         max_tasks: 1
       dependencies:
-      - storage
+      - lrs-storage
     lrs-storage:
       type: efs
     webhook:
