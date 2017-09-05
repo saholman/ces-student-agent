@@ -9,7 +9,8 @@ phases:
     commands:
       - chmod a+x ./lrs/codebuild-docker-build.sh
       - bash ./lrs/codebuild-docker-build.sh
-      - npm --prefix ./events install ./events
+      - chmod a+x ./events/codebuild-docker-build.sh
+      - bash ./events/codebuild-docker-build.sh
 artifacts:
   files:
     - ./**/*
