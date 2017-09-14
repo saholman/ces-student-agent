@@ -22,7 +22,14 @@ environments:
       #   image_name: cassandra:3
       # - name: webhook
       - name: lrs
+        links:
+        - mongodb
+        port_mappings:
+        - 80
       - name: mongodb
+        port_mappings:
+        - 27017
+        - 28017
       auto_scaling:
         min_tasks: 1
         max_tasks: 1
