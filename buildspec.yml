@@ -8,9 +8,9 @@ phases:
   build:
     commands:
       - chmod a+x ./mongodb/codebuild-docker-build.sh
-      - bash cd mongodb && ./codebuild-docker-build.sh
+      - bash ./mongodb/codebuild-docker-build.sh
       - chmod a+x ./lrs/codebuild-docker-build.sh
-      - bash cd lrs && ./codebuild-docker-build.sh
+      - bash ./lrs/codebuild-docker-build.sh
       # - chmod a+x ./events/codebuild-docker-build.sh
       # - bash ./events/codebuild-docker-build.sh
 artifacts:
