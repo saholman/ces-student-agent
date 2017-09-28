@@ -4,11 +4,25 @@ name: ces-student-agent
 
 environments:
   dev:
+    # dns:
+    #   type: route53zone
+    #   name: arch.byu.edu
     lrs:
       type: ecs
       load_balancer:
         type: http
+        # dns_names:
+        #   - lrs.arch.byu.edu
       containers:
+      # - name: lrs # Done manually for now.
+      #   links:
+      #   - mongodb
+      #   port_mappings:
+      #   - 80
+      - name: mongodb
+        port_mappings:
+        - 27017
+        - 28017
       # - name: kong
       #   image_name: kong
       #   links:
@@ -21,15 +35,6 @@ environments:
       # - name: kong-database # RDS
       #   image_name: cassandra:3
       # - name: webhook
-      - name: lrs
-        links:
-        - mongodb
-        port_mappings:
-        - 80
-      - name: mongodb
-        port_mappings:
-        - 27017
-        - 28017
       auto_scaling:
         min_tasks: 1
         max_tasks: 1
@@ -37,5 +42,6 @@ environments:
         key_name: mhailstone
       dependencies:
       - lrs-storage
+      # - dns
     lrs-storage:
       type: efs
