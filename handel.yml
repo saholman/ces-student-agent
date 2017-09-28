@@ -1,6 +1,6 @@
 version: 1
 
-name: ces-student-agent-test
+name: ces-student-agent
 
 environments:
   dev:
