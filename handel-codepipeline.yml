@@ -1,6 +1,6 @@
 version: 1
 
-name: ces-student-agent
+name: ces-student-agent-test
 
 pipelines:
   dev:
