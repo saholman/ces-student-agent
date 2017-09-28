@@ -9,19 +9,10 @@ environments:
       load_balancer:
         type: http
       containers:
-      - name: kong
-        image_name: kong
-        links:
-        - kong-database
+      - name: mongodb
         port_mappings:
-        - 8000
-        routing:
-          base_path: /
-          health_check_path: /
-      - name: kong-database
-        image_name: cassandra:3
-      - name: webhook
-      - name: lrs
+        - 27017
+        - 28017
       auto_scaling:
         min_tasks: 1
         max_tasks: 1
